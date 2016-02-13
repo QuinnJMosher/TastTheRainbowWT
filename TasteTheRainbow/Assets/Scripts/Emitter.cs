@@ -11,6 +11,7 @@ public class Emitter : MonoBehaviour {
 
     public Transform minPosition;
     public Transform maxPosition;
+    public Transform deathWall;
 
     public GameObject lightEnemy;//enemy class?
     //public GameObject heavyEnemy;
@@ -40,7 +41,7 @@ public class Emitter : MonoBehaviour {
 
     void Generate()
     {
-        ColorDefs.DefiniteColor spawnedColor = (ColorDefs.DefiniteColor)Random.Range(0, (int)ColorDefs.DefiniteColor.CO_COUNT);
+        ColorDefs.DefiniteColor spawnedColor = (ColorDefs.DefiniteColor)Random.Range(0, (int)ColorDefs.DefiniteColor.CO_WHITE);
         Vector3 spawnedPosition = new Vector3(Random.Range(minPosition.position.x, maxPosition.position.x), Random.Range(minPosition.position.y, maxPosition.position.y), 0);
         GameObject newEnemy = null;
 
@@ -55,7 +56,10 @@ public class Emitter : MonoBehaviour {
 
         newEnemy = Instantiate(lightEnemy, spawnedPosition, Quaternion.Euler(Vector3.forward)) as GameObject;
         //get enemy's script
-        //giv ememy its color
+        Enemy newEnemyScript = newEnemy.GetComponent<Enemy>();
+        //give ememy its color
+        newEnemyScript.ChangeColor(spawnedColor);
+        newEnemyScript.lowestY = deathWall.position.y;
 
     }
 }
