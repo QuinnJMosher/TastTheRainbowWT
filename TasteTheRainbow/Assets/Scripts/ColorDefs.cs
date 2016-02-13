@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ColorDefs {
 
-    enum DefiniteColor
+    public enum DefiniteColor
     {
         CO_RED,
         CO_BLUE,
@@ -16,5 +16,4 @@ public class ColorDefs {
         CO_GREY,
         CO_COUNT
     }
-
 }
