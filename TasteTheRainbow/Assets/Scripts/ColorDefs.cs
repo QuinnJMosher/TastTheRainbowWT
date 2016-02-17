@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class ColorDefs {
+public static class ColorDefs
+{
 
     public enum DefiniteColor
     {
