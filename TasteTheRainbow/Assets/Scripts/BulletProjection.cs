@@ -3,26 +3,52 @@ using System.Collections;
 
 public class BulletProjection : MonoBehaviour
 {
-    public ColorDefs.DefiniteColor bulletColor;
-    public Material mat;
-    public Rigidbody rbody;
-    public int bulletSpeed; 
+    public Rigidbody2D rbody;
+    public int bulletSpeed;
+    SpriteRenderer mySprite;
     // Use this for initialization
     void Start ()
     {
-        bulletColor = PlayerColor.playerColor;
-
-        if (bulletColor == ColorDefs.DefiniteColor.CO_RED)
-            mat.color = new Color(1, 0, 0, 1); // this line will change based on asset from artist
-        else if (bulletColor == ColorDefs.DefiniteColor.CO_GREEN)
-            mat.color = new Color(0,1,0,1);
-        else if (bulletColor == ColorDefs.DefiniteColor.CO_BLUE)
-            mat.color = new Color(0, 0, 1, 1);
-
+        mySprite = GetComponent<SpriteRenderer>();
         Vector3 force = new Vector3(0,bulletSpeed,0);
-        rbody.AddForce(force, ForceMode.Impulse);
+        rbody.AddForce(force, ForceMode2D.Impulse);
     }
-	
+
+    public void ChangeColor(ColorDefs.DefiniteColor parentColor)
+    {
+        switch(parentColor)
+        {
+            case ColorDefs.DefiniteColor.CO_RED:
+                mySprite.color = Color.red;
+                break;
+            case ColorDefs.DefiniteColor.CO_BLUE:
+                mySprite.color = Color.blue;
+                break;
+            case ColorDefs.DefiniteColor.CO_YELLOW:
+                mySprite.color = Color.yellow;
+                break;
+            case ColorDefs.DefiniteColor.CO_PURPLE:
+                mySprite.color = new Color(0.5f, 0.0f, 0.5f, 1.0f);
+                break;
+            case ColorDefs.DefiniteColor.CO_GREEN:
+                mySprite.color = Color.green;
+                break;
+            case ColorDefs.DefiniteColor.CO_ORANGE:
+                mySprite.color = Color.red + (Color.green * 0.5f);
+                break;
+            case ColorDefs.DefiniteColor.CO_WHITE:
+                mySprite.color = Color.white;
+                break;
+            case ColorDefs.DefiniteColor.CO_BLACK:
+                mySprite.color = Color.black;
+                break;
+            case ColorDefs.DefiniteColor.CO_GREY:
+                mySprite.color = Color.gray;
+                break;
+        }
+    }
+
+
 	// Update is called once per frame
 	void Update ()
     {
