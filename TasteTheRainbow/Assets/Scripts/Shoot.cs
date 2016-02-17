@@ -16,8 +16,8 @@ public class Shoot : MonoBehaviour
 
     }
 
-    public void OnShoot()
+    GameObject OnShoot()
     {
-        Instantiate(prefab, transform.position, Quaternion.identity);
+        return Instantiate(prefab, transform.position, Quaternion.identity) as GameObject;
     }
 }
