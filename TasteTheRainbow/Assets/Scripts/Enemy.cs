@@ -11,14 +11,14 @@ public class Enemy : MonoBehaviour {
 
     SpriteRenderer mySprite = null;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    protected virtual void Start () {
         mySprite = GetComponent<SpriteRenderer>();
         ChangeColor(absColor);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
         transform.Translate(0, mySpeed * Time.deltaTime, 0);
         if (transform.position.y < lowestY)
         {
