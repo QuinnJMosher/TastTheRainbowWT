@@ -14,7 +14,7 @@ public class Emitter : MonoBehaviour {
     public Transform deathWall;
 
     public GameObject lightEnemy;//enemy class?
-    //public GameObject heavyEnemy;
+    public GameObject heavyEnemy;
 
 	// Use this for initialization
 	void Start () {
@@ -45,16 +45,17 @@ public class Emitter : MonoBehaviour {
         Vector3 spawnedPosition = new Vector3(Random.Range(minPosition.position.x, maxPosition.position.x), Random.Range(minPosition.position.y, maxPosition.position.y), 0);
         GameObject newEnemy = null;
 
-        /*if (Random.Range(0, 2) == 0) //determine Type
+        if (Random.Range(0, 2) == 0) //determine Type
         {
             //small enemy
             newEnemy = Instantiate(lightEnemy, spawnedPosition, Quaternion.Euler(Vector3.forward)) as GameObject;
         }
-        else {
+        else
+        {
             //big enemy
-        }*/
+            newEnemy = Instantiate(heavyEnemy, spawnedPosition, Quaternion.Euler(Vector3.forward)) as GameObject;
+        }
 
-        newEnemy = Instantiate(lightEnemy, spawnedPosition, Quaternion.Euler(Vector3.forward)) as GameObject;
         //get enemy's script
         Enemy newEnemyScript = newEnemy.GetComponent<Enemy>();
         //give ememy its color
