@@ -26,10 +26,7 @@ public class ChangeWeaponSprite : MonoBehaviour
         switch (PlayerColor.playerColor)
         {
             case ColorDefs.DefiniteColor.CO_BLUE:
-                Debug.Log("Blue Weapon!");
                 selectedWeapon = blueWeapon;
-                //selectedWeapon.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 35.0f);
-                //selectedWeapon.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 44.0f);
                 break;
             case ColorDefs.DefiniteColor.CO_YELLOW:
                 selectedWeapon = yellowWeapon;
