@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+public class ColorNode
+{
+    ColorDefs.DefiniteColor selectedColor;
+    public ColorNode(ColorDefs.DefiniteColor _selectedColor)
+    {
+        selectedColor = _selectedColor;
+    }
+}
 
 public class PlayerColor : MonoBehaviour
 {
     public static ColorDefs.DefiniteColor playerColor;
     SpriteRenderer mySprite;
+    ColorNode[,] colorMap = new ColorNode[2,3];
+    
+
     // Use this for initialization
     void Start()
     {
@@ -12,26 +25,19 @@ public class PlayerColor : MonoBehaviour
         
         playerColor = ColorDefs.DefiniteColor.CO_RED;
         mySprite.color = Color.red;
+        //setting up array to select your gun color
+        colorMap[0, 0] = new ColorNode(ColorDefs.DefiniteColor.CO_BLUE);
+        colorMap[0, 1] = new ColorNode(ColorDefs.DefiniteColor.CO_YELLOW);
+        colorMap[0, 2] = new ColorNode(ColorDefs.DefiniteColor.CO_RED);
+        colorMap[1, 0] = new ColorNode(ColorDefs.DefiniteColor.CO_ORANGE);
+        colorMap[1, 1] = new ColorNode(ColorDefs.DefiniteColor.CO_PURPLE);
+        colorMap[1, 2] = new ColorNode(ColorDefs.DefiniteColor.CO_GREEN);
 
     }
 
     void ChangeColor()
-    {
-        switch (playerColor)
-        {
-            case ColorDefs.DefiniteColor.CO_RED:
-                mySprite.color = Color.blue;
-                playerColor = ColorDefs.DefiniteColor.CO_BLUE;
-                break;
-            case ColorDefs.DefiniteColor.CO_BLUE:
-                mySprite.color = Color.yellow;
-                playerColor = ColorDefs.DefiniteColor.CO_YELLOW;
-                break;
-            case ColorDefs.DefiniteColor.CO_YELLOW:
-                mySprite.color = Color.red;
-                playerColor = ColorDefs.DefiniteColor.CO_RED;
-                break;
-        }
+    { 
+
     }
     // Update is called once per frame
     void Update()
