@@ -21,7 +21,8 @@ public class ShootingEnemy : Enemy {
         remaningInterval -= Time.deltaTime;
         if (remaningInterval < 0.0f)
         {
-            myShootScript.OnShoot();
+            GameObject newBullet = myShootScript.OnShoot();
+            newBullet.GetComponent<BulletProjection>().ChangeColor(base.absColor);
             remaningInterval = shootInterval + remaningInterval;
         }
 

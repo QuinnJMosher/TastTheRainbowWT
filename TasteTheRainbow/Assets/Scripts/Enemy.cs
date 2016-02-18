@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-    [SerializeField]
-    ColorDefs.DefiniteColor absColor = ColorDefs.DefiniteColor.CO_WHITE;
+
+    public ColorDefs.DefiniteColor absColor = ColorDefs.DefiniteColor.CO_WHITE;
     [SerializeField]
     protected float mySpeed = -1.0f;
 

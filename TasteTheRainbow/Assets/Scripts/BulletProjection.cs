@@ -16,6 +16,10 @@ public class BulletProjection : MonoBehaviour
 
     public void ChangeColor(ColorDefs.DefiniteColor parentColor)
     {
+        if (mySprite == null)
+        {
+            Start();
+        }
         switch(parentColor)
         {
             case ColorDefs.DefiniteColor.CO_RED:
