@@ -60,7 +60,7 @@ public class BulletProjection : MonoBehaviour
     {
         //set 60 to screen height, may need to 
         //get camera to find world view
-        if (transform.position.y > 30 || transform.position.y < -30)
+        if (transform.position.y > 6 || transform.position.y < -6)
             Destroy(gameObject);
             
 	}

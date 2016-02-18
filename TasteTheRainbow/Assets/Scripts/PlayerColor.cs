@@ -117,6 +117,9 @@ public class PlayerColor : MonoBehaviour
     void Update()
     {
         ChangeColor();
+        blueVal = Mathf.Clamp(blueVal,0, maxColorVal);
+        yellowVal = Mathf.Clamp(yellowVal, 0, maxColorVal);
+        redVal = Mathf.Clamp(redVal, 0, maxColorVal);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -148,6 +151,10 @@ public class PlayerColor : MonoBehaviour
 
             }
         }
+
+        blueVal = Mathf.Clamp(blueVal, 0, maxColorVal);
+        yellowVal = Mathf.Clamp(yellowVal, 0, maxColorVal);
+        redVal = Mathf.Clamp(redVal, 0, maxColorVal);
 
         if (redVal + blueVal + yellowVal < minColorThreshhold)
         {

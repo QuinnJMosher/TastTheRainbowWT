@@ -13,6 +13,8 @@ public class ChangeWeaponSprite : MonoBehaviour
     public Text blue;
     public Text yellow;
     public Text red;
+    public Text health;
+    private int currentHealth;
     private Image selectedWeapon;
 
     // Use this for initialization
@@ -26,7 +28,8 @@ public class ChangeWeaponSprite : MonoBehaviour
         blue.text = PlayerColor.blueVal.ToString();
         yellow.text = PlayerColor.yellowVal.ToString();
         red.text = PlayerColor.redVal.ToString();
-
+        currentHealth = PlayerColor.blueVal + PlayerColor.yellowVal + PlayerColor.redVal;
+        health.text = "= \n" + currentHealth + "\n Keep this above 40!";
     }
 
     // Update is called once per frame
