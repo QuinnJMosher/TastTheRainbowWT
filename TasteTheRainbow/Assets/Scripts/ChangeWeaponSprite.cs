@@ -35,6 +35,8 @@ public class ChangeWeaponSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
         UpdateHealth();
 
         selectedWeapon.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 27);
