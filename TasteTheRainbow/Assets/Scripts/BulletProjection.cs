@@ -6,6 +6,7 @@ public class BulletProjection : MonoBehaviour
     public Rigidbody2D rbody;
     public int bulletSpeed;
     SpriteRenderer mySprite;
+    public ColorDefs.DefiniteColor AbsColor = ColorDefs.DefiniteColor.CO_WHITE;
     // Use this for initialization
     void Start ()
     {
@@ -20,6 +21,7 @@ public class BulletProjection : MonoBehaviour
         {
             Start();
         }
+        AbsColor = parentColor;
         switch(parentColor)
         {
             case ColorDefs.DefiniteColor.CO_RED:

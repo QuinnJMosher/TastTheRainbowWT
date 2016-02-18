@@ -6,6 +6,13 @@ public class Enemy : MonoBehaviour {
     public ColorDefs.DefiniteColor absColor = ColorDefs.DefiniteColor.CO_WHITE;
     [SerializeField]
     protected float mySpeed = -1.0f;
+    [SerializeField]
+    int maxHealth = 9;
+    int currentHealth;
+    [SerializeField]
+    int normalDamage = 1;
+    [SerializeField]
+    int critDamage = 3;
 
     public float lowestY;
 
@@ -15,6 +22,7 @@ public class Enemy : MonoBehaviour {
     protected virtual void Start () {
         mySprite = GetComponent<SpriteRenderer>();
         ChangeColor(absColor);
+        currentHealth = maxHealth;
 	}
 	
 	// Update is called once per frame
@@ -60,6 +68,48 @@ public class Enemy : MonoBehaviour {
                 case ColorDefs.DefiniteColor.CO_GREY:
                     mySprite.color = Color.gray;
                     break;
+            }
+        }
+    }
+
+    bool IsWeakTo(ColorDefs.DefiniteColor incomingType)
+    {
+        switch (absColor)
+        {
+            case ColorDefs.DefiniteColor.CO_RED:
+                return (incomingType == ColorDefs.DefiniteColor.CO_GREEN);
+            case ColorDefs.DefiniteColor.CO_BLUE:
+                return (incomingType == ColorDefs.DefiniteColor.CO_ORANGE);
+            case ColorDefs.DefiniteColor.CO_YELLOW:
+                return (incomingType == ColorDefs.DefiniteColor.CO_PURPLE);
+            case ColorDefs.DefiniteColor.CO_PURPLE:
+                return (incomingType == ColorDefs.DefiniteColor.CO_YELLOW);
+            case ColorDefs.DefiniteColor.CO_GREEN:
+                return (incomingType == ColorDefs.DefiniteColor.CO_RED);
+            case ColorDefs.DefiniteColor.CO_ORANGE:
+                return (incomingType == ColorDefs.DefiniteColor.CO_BLUE);
+            default:
+                return false;
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        BulletProjection collidedBullet = other.gameObject.GetComponent<BulletProjection>();
+        if (collidedBullet != null)
+        {
+            if (IsWeakTo(collidedBullet.AbsColor))
+            {
+                currentHealth -= critDamage;
+            }
+            else
+            {
+                currentHealth -= normalDamage;
+            }
+
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);//die
             }
         }
     }
