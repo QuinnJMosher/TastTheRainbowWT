@@ -20,9 +20,9 @@ public class PlayerColor : MonoBehaviour
 
     public int maxColorVal = 100;
     public int minColorThreshhold = 40;
-    int redVal;
-    int blueVal;
-    int yellowVal;
+    public int redVal;
+    public int blueVal;
+    public int yellowVal;
 
     // Use this for initialization
     void Start()
