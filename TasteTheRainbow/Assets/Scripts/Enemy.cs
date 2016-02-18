@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         BulletProjection collidedBullet = other.gameObject.GetComponent<BulletProjection>();
         if (collidedBullet != null)
@@ -106,6 +106,7 @@ public class Enemy : MonoBehaviour {
             {
                 currentHealth -= normalDamage;
             }
+            Destroy(other.gameObject);
 
             if (currentHealth <= 0)
             {
