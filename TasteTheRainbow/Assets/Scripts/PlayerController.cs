@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour
     private Shoot shoot;
     public Camera cam;
     private Vector3 target;
+    private PlayerColor myPlayerColor;
+ 
 	// Use this for initialization
 	void Start ()
     {
         shoot = GetComponent<Shoot>();
+        myPlayerColor = GetComponent<PlayerColor>();
 	}
 
     public void Move()
@@ -29,7 +32,11 @@ public class PlayerController : MonoBehaviour
     void Update ()
     {
         if (Input.GetMouseButtonDown(0))
-            shoot.OnShoot();
+        {
+            GameObject newBullet = shoot.OnShoot();
+            newBullet.GetComponent<BulletProjection>().ChangeColor(PlayerColor.playerColor);
+            myPlayerColor.FiredBullet();
+        }
     }
 
     void FixedUpdate()

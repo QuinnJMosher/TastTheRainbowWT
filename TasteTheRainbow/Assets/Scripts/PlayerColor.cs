@@ -18,11 +18,13 @@ public class PlayerColor : MonoBehaviour
     ColorNode[,] colorMap = new ColorNode[2,3];
     Vector2 mapLocation = new Vector2(0,0);
 
-    public int maxColorVal = 100;
-    public int minColorThreshhold = 40;
-    public int redVal;
-    public int blueVal;
-    public int yellowVal;
+    public static int maxColorVal = 100;
+    public static int minColorThreshhold = 40;
+    static int redVal;
+    static int blueVal;
+    static int yellowVal;
+
+    public static int bulletCost = 2;
 
     // Use this for initialization
     void Start()
@@ -153,4 +155,75 @@ public class PlayerColor : MonoBehaviour
         }
     }
 
+    public void FiredBullet()
+    {
+        switch (playerColor)
+        {
+            case ColorDefs.DefiniteColor.CO_RED:
+                redVal -= bulletCost;
+                break;
+            case ColorDefs.DefiniteColor.CO_BLUE:
+                blueVal -= bulletCost;
+                break;
+            case ColorDefs.DefiniteColor.CO_YELLOW:
+                yellowVal -= bulletCost;
+                break;
+            case ColorDefs.DefiniteColor.CO_PURPLE:
+                redVal -= bulletCost / 2;
+                blueVal -= bulletCost / 2;
+                break;
+            case ColorDefs.DefiniteColor.CO_GREEN:
+                blueVal -= bulletCost / 2;
+                yellowVal -= bulletCost / 2;
+                break;
+            case ColorDefs.DefiniteColor.CO_ORANGE:
+                redVal -= bulletCost / 2;
+                yellowVal -= bulletCost / 2;
+                break;
+            default:
+                break;
+        }
+
+        if (redVal + blueVal + yellowVal < minColorThreshhold)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public static void EnemyKilled(ColorDefs.DefiniteColor killedColor)
+    {
+        switch (killedColor)
+        {
+            case ColorDefs.DefiniteColor.CO_RED:
+                redVal += bulletCost * 5;
+                break;
+            case ColorDefs.DefiniteColor.CO_BLUE:
+                blueVal += bulletCost * 5;
+                break;
+            case ColorDefs.DefiniteColor.CO_YELLOW:
+                yellowVal += bulletCost * 5;
+                break;
+            case ColorDefs.DefiniteColor.CO_PURPLE:
+                redVal += bulletCost * 3;
+                blueVal += bulletCost * 3;
+                break;
+            case ColorDefs.DefiniteColor.CO_GREEN:
+                blueVal += bulletCost * 3;
+                yellowVal += bulletCost * 3;
+                break;
+            case ColorDefs.DefiniteColor.CO_ORANGE:
+                redVal += bulletCost * 3;
+                yellowVal += bulletCost * 3;
+                break;
+            default:
+                redVal += bulletCost * 2;
+                blueVal += bulletCost * 2;
+                yellowVal += bulletCost * 2;
+                break;
+        }
+
+        redVal = Mathf.Min(redVal, maxColorVal);
+        blueVal = Mathf.Min(blueVal, maxColorVal);
+        yellowVal = Mathf.Min(yellowVal, maxColorVal);
+    }
 }

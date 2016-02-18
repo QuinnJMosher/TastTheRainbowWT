@@ -108,6 +108,7 @@ public class Enemy : MonoBehaviour {
 
             if (currentHealth <= 0)
             {
+                PlayerColor.EnemyKilled(absColor);
                 Destroy(gameObject);//die
             }
         }
