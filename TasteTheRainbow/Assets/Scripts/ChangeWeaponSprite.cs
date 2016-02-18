@@ -10,6 +10,9 @@ public class ChangeWeaponSprite : MonoBehaviour
     public Image orangeWeapon;
     public Image purpleWeapon;
     public Image greenWeapon;
+    public Text blue;
+    public Text yellow;
+    public Text red;
     private Image selectedWeapon;
 
     // Use this for initialization
@@ -18,9 +21,19 @@ public class ChangeWeaponSprite : MonoBehaviour
         selectedWeapon = blueWeapon;
     }
 
+    void UpdateHealth()
+    {
+        blue.text = PlayerColor.blueVal.ToString();
+        yellow.text = PlayerColor.yellowVal.ToString();
+        red.text = PlayerColor.redVal.ToString();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        UpdateHealth();
+
         selectedWeapon.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 27);
         selectedWeapon.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 35);
         switch (PlayerColor.playerColor)

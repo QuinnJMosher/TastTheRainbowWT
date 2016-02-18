@@ -20,9 +20,9 @@ public class PlayerColor : MonoBehaviour
 
     public static int maxColorVal = 100;
     public static int minColorThreshhold = 40;
-    static int redVal;
-    static int blueVal;
-    static int yellowVal;
+    public static int redVal;
+    public static int blueVal;
+    public static int yellowVal;
 
     public static int bulletCost = 2;
 
