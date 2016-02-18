@@ -18,6 +18,12 @@ public class PlayerColor : MonoBehaviour
     ColorNode[,] colorMap = new ColorNode[2,3];
     Vector2 mapLocation = new Vector2(0,0);
 
+    public int maxColorVal = 100;
+    public int minColorThreshhold = 40;
+    int redVal;
+    int blueVal;
+    int yellowVal;
+
     // Use this for initialization
     void Start()
     {
@@ -33,6 +39,10 @@ public class PlayerColor : MonoBehaviour
 
         playerColor = colorMap[(int)mapLocation.x, (int)mapLocation.y].selectedColor;
         mySprite.color = Color.blue;
+
+        redVal = maxColorVal;
+        blueVal = maxColorVal;
+        yellowVal = maxColorVal;
     }
 
     void ChangeColor()
@@ -106,4 +116,41 @@ public class PlayerColor : MonoBehaviour
     {
         ChangeColor();
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        BulletProjection otherBullet = other.GetComponent<BulletProjection>();
+        if (otherBullet != null)
+        {
+            redVal -= 10;
+            blueVal -= 10;
+            yellowVal -= 10;
+
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            Enemy otherEnemy = other.GetComponent<Enemy>();
+            if (otherEnemy != null)
+            {
+                redVal -= 10;
+                blueVal -= 10;
+                yellowVal -= 10;
+
+                otherEnemy.currentHealth -= otherEnemy.critDamage;
+
+                if (otherEnemy.currentHealth <= 0)
+                {
+                    Destroy(other.gameObject);
+                }
+
+            }
+        }
+
+        if (redVal + blueVal + yellowVal < minColorThreshhold)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

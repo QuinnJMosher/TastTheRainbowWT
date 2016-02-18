@@ -8,11 +8,9 @@ public class Enemy : MonoBehaviour {
     protected float mySpeed = -1.0f;
     [SerializeField]
     int maxHealth = 9;
-    int currentHealth;
-    [SerializeField]
-    int normalDamage = 1;
-    [SerializeField]
-    int critDamage = 3;
+    public int currentHealth;
+    public int normalDamage = 1;
+    public int critDamage = 3;
 
     public float lowestY;
 
